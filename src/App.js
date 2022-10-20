@@ -1,7 +1,24 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GlobalStyle from "./Components/Style/GlobalStyle";
+
+import Cadastro from "./Pages/Cadastro/Cadastro";
+import Habitos from "./Pages/Habitos/Habitos";
+import Historico from "./Pages/Historico/Historico";
+import Hoje from "./Pages/Hoje/Hoje";
+import Login from "./Pages/Login/Login";
+
 export default function App() {
   return (
-    <div >
-      
-    </div>
-  )
+    <BrowserRouter>
+      <GlobalStyle />
+
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/hoje" element={<Hoje />} />
+        <Route path="/habitos" element={<Habitos />} />
+        <Route path="/historico" element={<Historico />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
