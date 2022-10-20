@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import {AZUL_CLARO, CINZA} from "../../Constants/Constants"
+import {AZUL_CLARO, AZUL_ESCURO, CINZA} from "../../Constants/Constants"
 
 const GlobalStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -54,11 +54,13 @@ const GlobalStyle = createGlobalStyle`
         color: ${CINZA};
     }
 
-    h1{
-    }
-
     body{
         font-family: 'Lexend Deca';
+    }
+
+    h1{
+        color: ${AZUL_ESCURO};
+        font-size: 23px;
     }
 
     input{

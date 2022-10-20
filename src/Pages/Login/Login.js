@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../Images/Logo.png";
 
-import {AZUL_CLARO} from "../../Constants/Constants"
+import { AZUL_CLARO } from "../../Constants/Constants";
 
 export default function Login() {
   return (
@@ -38,6 +38,12 @@ const TelaLogin = styled.div`
   }
 `;
 
+const Logo = styled.img`
+  width: 180px;
+  height: 178px;
+  margin-bottom: 32px;
+`;
+
 const Formulario = styled.form`
   width: 100%;
   display: flex;
@@ -50,10 +56,4 @@ const Formulario = styled.form`
     font-size: 20px;
     margin-bottom: 27px;
   }
-`;
-
-const Logo = styled.img`
-  width: 180px;
-  height: 178px;
-  margin-bottom: 32px;
 `;
