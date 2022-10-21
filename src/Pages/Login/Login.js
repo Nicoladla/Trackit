@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { ThreeDots } from "react-loader-spinner";
 import axios from "axios";
+import { ThreeDots } from "react-loader-spinner";
 
 import logo from "../../Images/Logo.png";
 import { AZUL_CLARO, URL_BASE } from "../../Constants/Constants";

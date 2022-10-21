@@ -39,7 +39,7 @@ export default function Cadastro() {
 
       .catch((erro) => {
         console.log(erro.response);
-        alert(erro.response.data.message)
+        alert(erro.response.data.message);
         setEstaCadastrandoUsuario(false);
       });
   }
@@ -58,6 +58,7 @@ export default function Cadastro() {
           onChange={atualizarInformaçoesDoCadastro}
           disabled={estaCadastrandoUsuario}
           required
+          data-identifier="input-email"
         />
         <input
           type="password"
@@ -67,6 +68,7 @@ export default function Cadastro() {
           onChange={atualizarInformaçoesDoCadastro}
           disabled={estaCadastrandoUsuario}
           required
+          data-identifier="input-password"
         />
         <input
           type="text"
@@ -76,6 +78,7 @@ export default function Cadastro() {
           onChange={atualizarInformaçoesDoCadastro}
           disabled={estaCadastrandoUsuario}
           required
+          data-identifier="input-name"
         />
         <input
           type="url"
@@ -85,8 +88,9 @@ export default function Cadastro() {
           onChange={atualizarInformaçoesDoCadastro}
           disabled={estaCadastrandoUsuario}
           required
+          data-identifier="input-photo"
         />
-        <EnviarCadastro type="submit" disabled={estaCadastrandoUsuario}>
+        <EnviaCadastro type="submit" disabled={estaCadastrandoUsuario}>
           {estaCadastrandoUsuario ? (
             <ThreeDots
               color="white"
@@ -97,10 +101,12 @@ export default function Cadastro() {
           ) : (
             "Cadastrar"
           )}
-        </EnviarCadastro>
+        </EnviaCadastro>
       </Formulario>
 
-      <Link to="/">Já tem uma conta? Faça login!</Link>
+      <Link to="/" data-identifier="back-to-login-action">
+        Já tem uma conta? Faça login!
+      </Link>
     </TelaCadastro>
   );
 }
@@ -136,7 +142,7 @@ const Formulario = styled.form`
   align-items: center;
 `;
 
-const EnviarCadastro = styled.button`
+const EnviaCadastro = styled.button`
   width: 85%;
   height: 45px;
   font-size: 20px;
