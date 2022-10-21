@@ -1,5 +1,5 @@
 export default function Hoje(){
     return(
-        <div>oii</div>
+        <div>Hoje</div>
     )
 }

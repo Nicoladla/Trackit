@@ -1,20 +1,82 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../../Images/Logo.png";
+import { ThreeDots } from "react-loader-spinner";
+import axios from "axios";
 
-import { AZUL_CLARO } from "../../Constants/Constants";
+import logo from "../../Images/Logo.png";
+import { AZUL_CLARO, URL_BASE } from "../../Constants/Constants";
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  const [estaFazendoLogin, setEstaFazendoLogin] = useState(false);
+  const [login, setLogin] = useState({ email: "", password: "" });
+
+  function atualizarDadosDoLogin(e) {
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  }
+
+  function fazerLogin(e) {
+    e.preventDefault();
+
+    setEstaFazendoLogin(true);
+
+    axios
+      .post(`${URL_BASE}/auth/login`, login)
+
+      .then((res) => {
+        //Colocar as informações do usuário logado em um estado
+        console.log(res.data);
+        navigate("/hoje");
+        setEstaFazendoLogin(false);
+      })
+
+      .catch((erro) => {
+        alert(erro.response.data.message);
+        setEstaFazendoLogin(false);
+      });
+  }
+
   return (
     <TelaLogin>
       <header>
         <Logo src={logo} alt="Logo" />
       </header>
-      <Formulario>
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Senha" required />
-        <button type="submit">Entrar</button>
+      <Formulario onSubmit={fazerLogin}>
+        <input
+          type="email"
+          placeholder="Email"
+          name="email"
+          value={login.email}
+          onChange={atualizarDadosDoLogin}
+          disabled={estaFazendoLogin}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Senha"
+          name="password"
+          value={login.password}
+          onChange={atualizarDadosDoLogin}
+          disabled={estaFazendoLogin}
+          required
+        />
+
+        <FazLogin type="submit" disabled={estaFazendoLogin}>
+          {estaFazendoLogin ? (
+            <ThreeDots
+              color="white"
+              ariaLabel="three-dots-loading"
+              height="20"
+              width="50"
+            />
+          ) : (
+            "Entrar"
+          )}
+        </FazLogin>
       </Formulario>
+
       <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
     </TelaLogin>
   );
@@ -49,11 +111,12 @@ const Formulario = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
 
-  button {
-    width: 85%;
-    height: 45px;
-    font-size: 20px;
-    margin-bottom: 27px;
-  }
+const FazLogin = styled.button`
+  width: 85%;
+  height: 45px;
+  font-size: 20px;
+  margin-bottom: 27px;
+  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
 `;

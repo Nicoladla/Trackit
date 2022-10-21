@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import {AZUL_CLARO, AZUL_ESCURO, CINZA} from "../../Constants/Constants"
+import { AZUL_CLARO, AZUL_ESCURO, CINZA } from "../../Constants/Constants";
 
 const GlobalStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -64,6 +64,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     input{
+        background-color: white;
         width: 85%;
         height: 45px;
         font-size: 19px;
@@ -77,12 +78,18 @@ const GlobalStyle = createGlobalStyle`
     input::placeholder{
         color: #DBDBDB;
     }
+    input:disabled {
+        background-color: #f2f2f2;
+    }
 
     button{
         background-color: ${AZUL_CLARO};
         color: white;
         border: none;
         border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 `;
 

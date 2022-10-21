@@ -1,22 +1,105 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../../Images/Logo.png";
+import axios from "axios";
+import { ThreeDots } from "react-loader-spinner";
 
-import { AZUL_CLARO } from "../../Constants/Constants";
+import logo from "../../Images/Logo.png";
+import { AZUL_CLARO, URL_BASE } from "../../Constants/Constants";
 
 export default function Cadastro() {
+  const navigate = useNavigate();
+
+  const [estaCadastrandoUsuario, setEstaCadastrandoUsuario] = useState(false);
+  console.log(estaCadastrandoUsuario);
+
+  const [cadastro, setCadastro] = useState({
+    email: "",
+    password: "",
+    name: "",
+    image: "",
+  });
+
+  function atualizarInformaçoesDoCadastro(e) {
+    setCadastro({ ...cadastro, [e.target.name]: e.target.value });
+  }
+
+  function cadastrarUsuario(e) {
+    e.preventDefault();
+
+    setEstaCadastrandoUsuario(true);
+
+    axios
+      .post(`${URL_BASE}/auth/sign-up`, cadastro)
+
+      .then((res) => {
+        navigate("/");
+        setEstaCadastrandoUsuario(false);
+      })
+
+      .catch((erro) => {
+        console.log(erro.response);
+        alert(erro.response.data.message)
+        setEstaCadastrandoUsuario(false);
+      });
+  }
+
   return (
     <TelaCadastro>
       <header>
         <Logo src={logo} alt="Logo" />
       </header>
-      <Formulario>
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Senha" required />
-        <input type="text" placeholder="Nome" required />
-        <input type="url" placeholder="Foto" required />
-        <button type="submit">Cadastrar</button>
+      <Formulario onSubmit={cadastrarUsuario}>
+        <input
+          type="email"
+          placeholder="Email"
+          name="email"
+          value={cadastro.email}
+          onChange={atualizarInformaçoesDoCadastro}
+          disabled={estaCadastrandoUsuario}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Senha"
+          name="password"
+          value={cadastro.senha}
+          onChange={atualizarInformaçoesDoCadastro}
+          disabled={estaCadastrandoUsuario}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Nome"
+          name="name"
+          value={cadastro.nome}
+          onChange={atualizarInformaçoesDoCadastro}
+          disabled={estaCadastrandoUsuario}
+          required
+        />
+        <input
+          type="url"
+          placeholder="Foto"
+          name="image"
+          value={cadastro.foto}
+          onChange={atualizarInformaçoesDoCadastro}
+          disabled={estaCadastrandoUsuario}
+          required
+        />
+        <EnviarCadastro type="submit" disabled={estaCadastrandoUsuario}>
+          {estaCadastrandoUsuario ? (
+            <ThreeDots
+              color="white"
+              ariaLabel="three-dots-loading"
+              height="20"
+              width="50"
+            />
+          ) : (
+            "Cadastrar"
+          )}
+        </EnviarCadastro>
       </Formulario>
+
       <Link to="/">Já tem uma conta? Faça login!</Link>
     </TelaCadastro>
   );
@@ -51,11 +134,12 @@ const Formulario = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
 
-  button {
-    width: 85%;
-    height: 45px;
-    font-size: 20px;
-    margin-bottom: 27px;
-  }
+const EnviarCadastro = styled.button`
+  width: 85%;
+  height: 45px;
+  font-size: 20px;
+  margin-bottom: 27px;
+  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
 `;
