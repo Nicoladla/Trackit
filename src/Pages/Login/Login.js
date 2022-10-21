@@ -52,6 +52,7 @@ export default function Login() {
           onChange={atualizarDadosDoLogin}
           disabled={estaFazendoLogin}
           required
+          data-identifier="input-email"
         />
         <input
           type="password"
@@ -61,9 +62,14 @@ export default function Login() {
           onChange={atualizarDadosDoLogin}
           disabled={estaFazendoLogin}
           required
+          data-identifier="input-password"
         />
 
-        <FazLogin type="submit" disabled={estaFazendoLogin}>
+        <FazLogin
+          type="submit"
+          disabled={estaFazendoLogin}
+          data-identifier="login-btn"
+        >
           {estaFazendoLogin ? (
             <ThreeDots
               color="white"
@@ -77,7 +83,9 @@ export default function Login() {
         </FazLogin>
       </Formulario>
 
-      <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
+      <Link to="/cadastro" data-identifier="sign-up-action">
+        Não tem uma conta? Cadastre-se!
+      </Link>
     </TelaLogin>
   );
 }
