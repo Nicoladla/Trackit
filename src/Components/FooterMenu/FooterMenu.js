@@ -16,7 +16,9 @@ export default function FooterMenu() {
         location.pathname !== "/" && location.pathname !== "/cadastro"
       }
     >
-      <Link to="/habitos">Hábitos</Link>
+      <Link to="/habitos" data-identifier="habit-page-action">
+        Hábitos
+      </Link>
 
       <div onClick={() => navigate("/hoje")}>
         <CircularProgressbar
@@ -32,7 +34,9 @@ export default function FooterMenu() {
           })}
         />
       </div>
-      <Link to="/historico">Histórico</Link>
+      <Link to="/historico" data-identifier="historic-page-action">
+        Histórico
+      </Link>
     </Menu>
   );
 }

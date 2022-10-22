@@ -14,7 +14,10 @@ export default function HeaderTopo() {
       }
     >
       <p>TrackIt</p>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9E8suDEUlABnYYV-f2P2FDWxxbxnOjAndcZhYobuXNTlQaKmWrsptTVVEhz_BC9DH9Qs&usqp=CAU" />
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9E8suDEUlABnYYV-f2P2FDWxxbxnOjAndcZhYobuXNTlQaKmWrsptTVVEhz_BC9DH9Qs&usqp=CAU"
+        data-identifier="avatar"
+      />
     </Topo>
   );
 }
