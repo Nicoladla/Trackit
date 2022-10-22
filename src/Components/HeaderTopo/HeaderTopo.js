@@ -5,7 +5,6 @@ import { AZUL_ESCURO } from "../../Constants/Constants";
 
 export default function HeaderTopo() {
   const location = useLocation();
-  console.log(location.pathname);
 
   return (
     <Topo
