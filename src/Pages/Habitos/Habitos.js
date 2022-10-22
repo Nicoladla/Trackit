@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import CriaçaoDoHabito from "../../Components/CriaçaoDoHabito/CriaçaoDoHabito";
+import HabitoCriado from "../../Components/HabitoCriado/HabitoCriado";
 
 export default function Habitos() {
   return (
     <TelaHabitos>
-      <header>
+      <Titulo>
         <h1>Meus hábitos</h1>
         <Butao>+</Butao>
-      </header>
-      <CriaçaoDoHabito />
+      </Titulo>
+
       <p>
         Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
         começar a trackear!
@@ -20,20 +21,20 @@ export default function Habitos() {
 const TelaHabitos = styled.div`
   background-color: #f2f2f2;
   width: 100vw;
-  height: 100vh;
-  padding: 100px 18px 0;
-
-  header {
-    margin-bottom: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  min-height: 100vh;
+  padding: 100px 18px;
 
   p {
     font-size: 18px;
     line-height: 22px;
   }
+`;
+
+const Titulo = styled.header`
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Butao = styled.button`
