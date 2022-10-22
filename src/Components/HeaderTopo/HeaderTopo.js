@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import { AZUL_ESCURO } from "../../Constants/Constants";
+import { usuarioContext } from "../../Provider/UsuárioLogado";
 
 export default function HeaderTopo() {
   const location = useLocation();
+
+  const { usuarioAtivo } = useContext(usuarioContext);
 
   return (
     <Topo
@@ -13,10 +17,7 @@ export default function HeaderTopo() {
       }
     >
       <p>TrackIt</p>
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9E8suDEUlABnYYV-f2P2FDWxxbxnOjAndcZhYobuXNTlQaKmWrsptTVVEhz_BC9DH9Qs&usqp=CAU"
-        data-identifier="avatar"
-      />
+      <img src={usuarioAtivo.image} data-identifier="avatar" />
     </Topo>
   );
 }

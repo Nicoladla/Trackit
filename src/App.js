@@ -10,12 +10,11 @@ import Hoje from "./Pages/Hoje/Hoje";
 import Login from "./Pages/Login/Login";
 
 export default function App() {
-  
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <HeaderTopo/>
-      <FooterMenu/>
+      <HeaderTopo />
+      <FooterMenu />
 
       <Routes>
         <Route path="/" element={<Login />} />
@@ -27,7 +26,6 @@ export default function App() {
     </BrowserRouter>
   );
 }
-
 
 /* 
 contas:

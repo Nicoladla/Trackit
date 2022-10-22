@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
@@ -6,9 +6,12 @@ import { ThreeDots } from "react-loader-spinner";
 
 import logo from "../../Images/Logo.png";
 import { AZUL_CLARO, URL_BASE } from "../../Constants/Constants";
+import { usuarioContext } from "../../Provider/UsuárioLogado";
 
 export default function Login() {
   const navigate = useNavigate();
+
+  const { setUsuarioAtivo } = useContext(usuarioContext);
 
   const [estaFazendoLogin, setEstaFazendoLogin] = useState(false);
   const [login, setLogin] = useState({ email: "", password: "" });
@@ -26,8 +29,7 @@ export default function Login() {
       .post(`${URL_BASE}/auth/login`, login)
 
       .then((res) => {
-        //Colocar as informações do usuário logado em um estado
-        console.log(res.data);
+        setUsuarioAtivo(res.data);
         navigate("/hoje");
         setEstaFazendoLogin(false);
       })

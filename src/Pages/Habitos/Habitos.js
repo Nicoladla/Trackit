@@ -36,5 +36,6 @@ const TelaHabitos = styled.div`
 
   p{
     font-size: 18px;
+    line-height: 22px;
   }
 `;
