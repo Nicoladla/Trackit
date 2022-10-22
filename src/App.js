@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import FooterMenu from "./Components/FooterMenu/FooterMenu";
+import HeaderTopo from "./Components/HeaderTopo/HeaderTopo";
 import GlobalStyle from "./Components/Style/GlobalStyle";
 
 import Cadastro from "./Pages/Cadastro/Cadastro";
@@ -8,9 +10,12 @@ import Hoje from "./Pages/Hoje/Hoje";
 import Login from "./Pages/Login/Login";
 
 export default function App() {
+  
   return (
     <BrowserRouter>
       <GlobalStyle />
+      <HeaderTopo/>
+      <FooterMenu/>
 
       <Routes>
         <Route path="/" element={<Login />} />

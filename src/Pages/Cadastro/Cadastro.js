@@ -11,7 +11,6 @@ export default function Cadastro() {
   const navigate = useNavigate();
 
   const [estaCadastrandoUsuario, setEstaCadastrandoUsuario] = useState(false);
-  console.log(estaCadastrandoUsuario);
 
   const [cadastro, setCadastro] = useState({
     email: "",
