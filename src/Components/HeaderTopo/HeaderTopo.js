@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import { AZUL_ESCURO } from "../../Constants/Constants";
@@ -16,7 +16,7 @@ export default function HeaderTopo() {
         location.pathname !== "/" && location.pathname !== "/cadastro"
       }
     >
-      <p>TrackIt</p>
+      <Link to="/"><p>TrackIt</p></Link>
       <img src={usuarioAtivo.image} data-identifier="avatar" />
     </Topo>
   );

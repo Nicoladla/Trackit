@@ -1,19 +1,56 @@
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+
 import CriaçaoDoHabito from "../../Components/CriaçaoDoHabito/CriaçaoDoHabito";
 import HabitoCriado from "../../Components/HabitoCriado/HabitoCriado";
+import { URL_BASE } from "../../Constants/Constants";
+import { usuarioContext } from "../../Provider/UsuárioLogado";
 
 export default function Habitos() {
+  const { usuarioAtivo } = useContext(usuarioContext);
+  const config = {
+    headers: { Authorization: `Bearer ${usuarioAtivo.token}` },
+  };
+
+  const [querCriaUmHabito, setQuerCriaUmHabito] = useState(false);
+  const [habitosDoUsuario, setHabitosDoUsuario] = useState([]);
+  const [habito, setHabito] = useState({ name: "", days: [] });
+  console.log(habitosDoUsuario);
+
+  useEffect(() => {
+    axios
+      .get(`${URL_BASE}/habits`, config)
+
+      .then((res) => setHabitosDoUsuario(res.data))
+
+      //Fazer a verificação, caso o usuário não esteja logado.
+      .catch((erro) => console.log(erro.response.data));
+  }, []);
+
   return (
     <TelaHabitos>
       <Titulo>
         <h1>Meus hábitos</h1>
-        <Butao>+</Butao>
+        <Butao onClick={() => setQuerCriaUmHabito(true)}>+</Butao>
       </Titulo>
 
-      <p>
-        Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
-        começar a trackear!
-      </p>
+      {querCriaUmHabito && (
+        <CriaçaoDoHabito
+          setQuerCriaUmHabito={setQuerCriaUmHabito}
+          habito={habito}
+          setHabito={setHabito}
+        />
+      )}
+
+      {habitosDoUsuario.length !== 0 ? ( //mandar as props pro seguinte componente
+        habitosDoUsuario.map((h) => <HabitoCriado />)
+      ) : (
+        <p>
+          Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
+          começar a trackear!
+        </p>
+      )}
     </TelaHabitos>
   );
 }
