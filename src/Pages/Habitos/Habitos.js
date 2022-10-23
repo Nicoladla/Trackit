@@ -52,6 +52,9 @@ export default function Habitos() {
             key={h.id}
             titulo={h.name}
             dias={h.days}
+            id={h.id}
+            config={config}
+            setHabidoAdicionado={setHabidoAdicionado}
           />
         ))
       ) : (

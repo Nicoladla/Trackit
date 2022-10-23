@@ -1,14 +1,33 @@
+import axios from "axios";
 import styled from "styled-components";
+import { URL_BASE } from "../../Constants/Constants";
 import lixeira from "../../Images/trash-outline.svg";
 
-export default function HabitoCriado({ titulo, dias }) {
+export default function HabitoCriado(props) {
+  const { titulo, dias, id, config, setHabidoAdicionado } = props;
+
   const diasDaSemana = ["D", "S", "T", "Q", "Q", "S", "S"];
+
+  function excluirHabito() {
+    const querExcluirOHabito = window.confirm(
+      "Você deseja realmente excluir esse hábito?"
+    );
+
+    if (querExcluirOHabito) {
+      axios
+        .delete(`${URL_BASE}/habits/${id}`, config)
+
+        .then((res) => setHabidoAdicionado({}))
+
+        .catch((erro) => console.log(erro.response.data));
+    }
+  }
 
   return (
     <CaixaHabitoCriado>
       <header>
         <h3>{titulo}</h3>
-        <img src={lixeira} alt="icone" />
+        <img src={lixeira} alt="icone" onClick={excluirHabito} />
       </header>
       <ul>
         {diasDaSemana.map((dia, i) => (
