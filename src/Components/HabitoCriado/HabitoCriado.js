@@ -26,8 +26,13 @@ export default function HabitoCriado(props) {
   return (
     <CaixaHabitoCriado>
       <header>
-        <h3>{titulo}</h3>
-        <img src={lixeira} alt="icone" onClick={excluirHabito} />
+        <h3 data-identifier="habit-name">{titulo}</h3>
+        <img
+          src={lixeira}
+          alt="icone"
+          onClick={excluirHabito}
+          data-identifier="delete-habit-btn"
+        />
       </header>
       <ul>
         {diasDaSemana.map((dia, i) => (

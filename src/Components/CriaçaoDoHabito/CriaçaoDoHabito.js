@@ -45,7 +45,7 @@ export default function CriaçaoDoHabito(props) {
         setEstaCriandoHabito(false);
         setQuerCriaUmHabito(false);
         setHabito({ name: "", days: "" });
-        setHabidoAdicionado(res.data)
+        setHabidoAdicionado(res.data);
       })
 
       .catch((erro) => {
@@ -70,6 +70,7 @@ export default function CriaçaoDoHabito(props) {
         onChange={(e) => setHabito({ ...habito, name: e.target.value })}
         value={habito.name}
         disabled={estaCriandoHabito}
+        data-identifier="input-habit-name"
       />
 
       <ul>
@@ -78,6 +79,7 @@ export default function CriaçaoDoHabito(props) {
             key={i}
             onClick={() => selecionarDia(i)}
             foiSelecionado={habito.days.includes(i)}
+            data-identifier="week-day-btn"
           >
             {dia}
           </Dia>
@@ -88,11 +90,16 @@ export default function CriaçaoDoHabito(props) {
         <ButaoCancelar
           onClick={() => setQuerCriaUmHabito(false)}
           disabled={estaCriandoHabito}
+          data-identifier="cancel-habit-create-btn"
         >
           Cancelar
         </ButaoCancelar>
 
-        <ButaoSalvar onClick={criarHabito} disabled={estaCriandoHabito}>
+        <ButaoSalvar
+          onClick={criarHabito}
+          disabled={estaCriandoHabito}
+          data-identifier="save-habit-create-btn"
+        >
           {estaCriandoHabito ? (
             <ThreeDots
               color="white"

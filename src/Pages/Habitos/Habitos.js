@@ -33,7 +33,12 @@ export default function Habitos() {
     <TelaHabitos>
       <Titulo>
         <h1>Meus hábitos</h1>
-        <Butao onClick={() => setQuerCriaUmHabito(true)}>+</Butao>
+        <Butao
+          onClick={() => setQuerCriaUmHabito(true)}
+          data-identifier="create-habit-btn"
+        >
+          +
+        </Butao>
       </Titulo>
 
       {querCriaUmHabito && (
@@ -58,7 +63,7 @@ export default function Habitos() {
           />
         ))
       ) : (
-        <p>
+        <p data-identifier="no-habit-message">
           Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para
           começar a trackear!
         </p>
