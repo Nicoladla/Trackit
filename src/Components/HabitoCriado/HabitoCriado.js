@@ -1,20 +1,22 @@
 import styled from "styled-components";
-import lixeira from "../../Images/trash-outline.svg"
+import lixeira from "../../Images/trash-outline.svg";
 
-export default function HabitoCriado() {
+export default function HabitoCriado({ titulo, dias }) {
   const diasDaSemana = ["D", "S", "T", "Q", "Q", "S", "S"];
 
   return (
     <CaixaHabitoCriado>
       <header>
-        <h3>Ler 1 capítulo de livro</h3>
-        <img src={lixeira} alt="icone"/>
+        <h3>{titulo}</h3>
+        <img src={lixeira} alt="icone" />
       </header>
-      <ListaDias>
-        {diasDaSemana.map((d) => (
-          <li>{d}</li>
+      <ul>
+        {diasDaSemana.map((dia, i) => (
+          <Dia key={i} foiSelecionado={dias.includes(i)}>
+            {dia}
+          </Dia>
         ))}
-      </ListaDias>
+      </ul>
     </CaixaHabitoCriado>
   );
 }
@@ -30,7 +32,7 @@ const CaixaHabitoCriado = styled.article`
   flex-direction: column;
   justify-content: center;
 
-  header{
+  header {
     display: flex;
     align-items: start;
     justify-content: space-between;
@@ -41,25 +43,27 @@ const CaixaHabitoCriado = styled.article`
     margin: 15px 0;
   }
 
-  img{
+  ul {
+    display: flex;
+    margin-bottom: 15px;
+  }
+
+  img {
     width: 18px;
     margin: 10px 10px 0 0;
   }
 `;
 
-const ListaDias = styled.ul`
+const Dia = styled.li`
+  background-color: ${({ foiSelecionado }) =>
+    foiSelecionado ? "#CFCFCF" : "#FFFFFF"};
+  color: ${({ foiSelecionado }) => (foiSelecionado ? "#FFFFFF" : "#DBDBDB")};
+  width: 30px;
+  height: 30px;
+  margin-right: 4px;
+  border: 1px solid #d5d5d5;
+  border-radius: 5px;
   display: flex;
-  margin-bottom: 15px;
-
-  li {
-    color: #dbdbdb;
-    width: 30px;
-    height: 30px;
-    margin-right: 4px;
-    border: 1px solid #d5d5d5;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  align-items: center;
+  justify-content: center;
 `;

@@ -15,7 +15,8 @@ export default function Habitos() {
 
   const [querCriaUmHabito, setQuerCriaUmHabito] = useState(false);
   const [habitosDoUsuario, setHabitosDoUsuario] = useState([]);
-  const [habito, setHabito] = useState({ name: "", days: [] });
+  const [habidoAdicionado, setHabidoAdicionado] = useState({});
+  const [habito, setHabito] = useState({ name: "", days: "" });
   console.log(habitosDoUsuario);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function Habitos() {
 
       //Fazer a verificação, caso o usuário não esteja logado.
       .catch((erro) => console.log(erro.response.data));
-  }, []);
+  }, [habidoAdicionado]);
 
   return (
     <TelaHabitos>
@@ -38,13 +39,21 @@ export default function Habitos() {
       {querCriaUmHabito && (
         <CriaçaoDoHabito
           setQuerCriaUmHabito={setQuerCriaUmHabito}
+          setHabidoAdicionado={setHabidoAdicionado}
           habito={habito}
           setHabito={setHabito}
+          config={config}
         />
       )}
 
-      {habitosDoUsuario.length !== 0 ? ( //mandar as props pro seguinte componente
-        habitosDoUsuario.map((h) => <HabitoCriado />)
+      {habitosDoUsuario.length !== 0 ? (
+        habitosDoUsuario.map((h) => (
+          <HabitoCriado
+            key={h.id}
+            titulo={h.name}
+            dias={h.days}
+          />
+        ))
       ) : (
         <p>
           Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para

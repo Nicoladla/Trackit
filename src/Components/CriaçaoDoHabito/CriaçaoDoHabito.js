@@ -1,12 +1,21 @@
+import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
-import { AZUL_CLARO } from "../../Constants/Constants";
+import { ThreeDots } from "react-loader-spinner";
+import { AZUL_CLARO, URL_BASE } from "../../Constants/Constants";
 
-export default function CriaçaoDoHabito({ setQuerCriaUmHabito, habito, setHabito }) {
+export default function CriaçaoDoHabito(props) {
+  const {
+    setQuerCriaUmHabito,
+    habito,
+    setHabito,
+    config,
+    setHabidoAdicionado,
+  } = props;
+
   const diasDaSemana = ["D", "S", "T", "Q", "Q", "S", "S"];
 
   const [estaCriandoHabito, setEstaCriandoHabito] = useState(false);
-  console.log(habito);
 
   function selecionarDia(i) {
     const foiSelecionado = habito.days.includes(i);
@@ -20,6 +29,36 @@ export default function CriaçaoDoHabito({ setQuerCriaUmHabito, habito, setHabit
         ...habito,
         days: habito.days.filter((indexDia) => indexDia !== i),
       });
+    }
+  }
+
+  function criarHabito() {
+    setEstaCriandoHabito(true);
+
+    const campoInvalido = validarDadosDeEnvio();
+
+    axios
+      .post(`${URL_BASE}/habits`, habito, config)
+
+      .then((res) => {
+        console.log(res.data);
+        setEstaCriandoHabito(false);
+        setQuerCriaUmHabito(false);
+        setHabito({ name: "", days: "" });
+        setHabidoAdicionado(res.data)
+      })
+
+      .catch((erro) => {
+        setEstaCriandoHabito(false);
+        alert(campoInvalido);
+      });
+  }
+
+  function validarDadosDeEnvio() {
+    if (habito.name === "") {
+      return "Você deve dar um nome ao seu hábito.";
+    } else if (habito.days.length === 0) {
+      return "Você deve selecionar pelo menos um dia para poder realizar seu hábito.";
     }
   }
 
@@ -46,10 +85,25 @@ export default function CriaçaoDoHabito({ setQuerCriaUmHabito, habito, setHabit
       </ul>
 
       <footer>
-        <ButaoCancelar onClick={() => setQuerCriaUmHabito(false)}>
+        <ButaoCancelar
+          onClick={() => setQuerCriaUmHabito(false)}
+          disabled={estaCriandoHabito}
+        >
           Cancelar
         </ButaoCancelar>
-        <ButaoSalvar>Salvar</ButaoSalvar>
+
+        <ButaoSalvar onClick={criarHabito} disabled={estaCriandoHabito}>
+          {estaCriandoHabito ? (
+            <ThreeDots
+              color="white"
+              ariaLabel="three-dots-loading"
+              height="20"
+              width="50"
+            />
+          ) : (
+            "Salvar"
+          )}
+        </ButaoSalvar>
       </footer>
     </CampoCriaçaoHabito>
   );
@@ -98,9 +152,11 @@ const ButaoCancelar = styled.button`
   width: 84px;
   height: 35px;
   margin-right: 23px;
+  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
 `;
 
 const ButaoSalvar = styled.button`
   width: 84px;
   height: 35px;
+  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
 `;
