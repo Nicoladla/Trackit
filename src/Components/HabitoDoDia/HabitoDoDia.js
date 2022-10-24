@@ -36,7 +36,7 @@ const Habito = styled.article`
   }
 
   ion-icon {
-    color: #EBEBEB;;
+    color: #ebebeb;
     font-size: 69px;
   }
 `;
