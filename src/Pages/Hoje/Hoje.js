@@ -1,9 +1,18 @@
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import HabitoDoDia from "../../Components/HabitoDoDia/HabitoDoDia";
-
+import axios from "axios";
 import dayjs from "dayjs";
 
+import HabitoDoDia from "../../Components/HabitoDoDia/HabitoDoDia";
+import { URL_BASE } from "../../Constants/Constants";
+import { usuarioContext } from "../../Provider/UsuárioLogado";
+
 export default function Hoje() {
+  const { usuarioAtivo } = useContext(usuarioContext);
+  const config = {
+    headers: { Authorization: `Bearer ${usuarioAtivo.token}` },
+  };
+
   const diasDaSemana = [
     "Domingo",
     "Segunda",
@@ -18,6 +27,18 @@ export default function Hoje() {
   const dataCorrente = dayjs().date();
   const mescorrente = dayjs().month();
 
+  const [habitosDehoje, setHabitosDehoje] = useState([]);
+  console.log(habitosDehoje);
+
+  useEffect(() => {
+    axios
+      .get(`${URL_BASE}/habits/today`, config)
+
+      .then((res) => setHabitosDehoje(res.data))
+
+      .catch((erro) => console.log(erro.response.data));
+  }, []);
+
   return (
     <TelaHoje>
       <h1>
@@ -25,7 +46,9 @@ export default function Hoje() {
       </h1>
       <h2>Nenhum hábito concluído ainda</h2>
 
-      <HabitoDoDia />
+      {habitosDehoje.map((h) => (
+        <HabitoDoDia key={h.id} habitoDeHoje={h} />
+      ))}
     </TelaHoje>
   );
 }

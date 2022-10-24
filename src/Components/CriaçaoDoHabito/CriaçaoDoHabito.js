@@ -41,7 +41,6 @@ export default function CriaçaoDoHabito(props) {
       .post(`${URL_BASE}/habits`, habito, config)
 
       .then((res) => {
-        console.log(res.data);
         setEstaCriandoHabito(false);
         setQuerCriaUmHabito(false);
         setHabito({ name: "", days: "" });

@@ -17,7 +17,6 @@ export default function Habitos() {
   const [habitosDoUsuario, setHabitosDoUsuario] = useState([]);
   const [habidoAdicionado, setHabidoAdicionado] = useState({});
   const [habito, setHabito] = useState({ name: "", days: "" });
-  console.log(habitosDoUsuario);
 
   useEffect(() => {
     axios
