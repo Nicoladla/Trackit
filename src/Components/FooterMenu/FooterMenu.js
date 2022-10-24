@@ -3,10 +3,13 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AZUL_CLARO } from "../../Constants/Constants";
+import { useContext } from "react";
+import { habitoComcluidoContext } from "../../Provider/HabitosConcluidos";
 
 export default function FooterMenu() {
   const navigate = useNavigate();
   const location = useLocation();
+  const {habitosConcluidos} = useContext(habitoComcluidoContext)
 
   const percentage = 90;
 

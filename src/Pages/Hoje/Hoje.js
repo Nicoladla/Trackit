@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import HabitoDoDia from "../../Components/HabitoDoDia/HabitoDoDia";
 import { URL_BASE } from "../../Constants/Constants";
 import { usuarioContext } from "../../Provider/UsuárioLogado";
+import { habitoComcluidoContext } from "../../Provider/HabitosConcluidos";
 
 export default function Hoje() {
   const { usuarioAtivo } = useContext(usuarioContext);
@@ -23,12 +24,16 @@ export default function Hoje() {
     "Sábado",
   ];
 
+  const { habitosConcluidos, setHabitosConcluidos } = useContext(
+    habitoComcluidoContext
+  );
+
   const diaCorrente = dayjs().day();
   const dataCorrente = dayjs().date();
   const mescorrente = dayjs().month();
 
   const [habitosDehoje, setHabitosDehoje] = useState([]);
-  console.log(habitosDehoje);
+  const [deveAtualiza, setDeveAtualiza] = useState({});
 
   useEffect(() => {
     axios
@@ -37,17 +42,22 @@ export default function Hoje() {
       .then((res) => setHabitosDehoje(res.data))
 
       .catch((erro) => console.log(erro.response.data));
-  }, []);
+  }, [deveAtualiza]);
 
   return (
     <TelaHoje>
-      <h1>
+      <h1 data-identifier="today-infos">
         {diasDaSemana[diaCorrente]}, {dataCorrente}/{mescorrente + 1}
       </h1>
-      <h2>Nenhum hábito concluído ainda</h2>
+      <h2 data-identifier="today-infos">Nenhum hábito concluído ainda</h2>
 
       {habitosDehoje.map((h) => (
-        <HabitoDoDia key={h.id} habitoDeHoje={h} />
+        <HabitoDoDia
+          key={h.id}
+          habitoDeHoje={h}
+          config={config}
+          setDeveAtualiza={setDeveAtualiza}
+        />
       ))}
     </TelaHoje>
   );
