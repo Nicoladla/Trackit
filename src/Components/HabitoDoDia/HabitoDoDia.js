@@ -2,37 +2,38 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { URL_BASE } from "../../Constants/Constants";
-import { habitoComcluidoContext } from "../../Provider/HabitosConcluidos";
+import { numHabitoContext } from "../../Provider/NumHabitosComcluidos";
 
 export default function HabitoDoDia(props) {
   const { habitoDeHoje, config, setDeveAtualiza } = props;
 
+  const { habitosConcluidos, setHabitosConcluidos } =
+    useContext(numHabitoContext);
+
   const [estaMarcado, setEstaMarcado] = useState(habitoDeHoje.done);
-  const { habitosConcluidos, setHabitosConcluidos } = useContext(
-    habitoComcluidoContext
-  );
 
   useEffect(() => {
     if (estaMarcado) {
       setHabitosConcluidos(habitosConcluidos + 1);
     }
-  }, [])
+  }, []);
 
   function AtualizarstatusHabito() {
     setEstaMarcado(!estaMarcado);
 
     if (!estaMarcado) {
-      console.log("Marcou");
       axios
         .post(
           `${URL_BASE}/habits/${habitoDeHoje.id}/check`,
           habitoDeHoje.id,
           config
         )
-        .then((res) => setDeveAtualiza({}))
+        .then((res) => {
+          setDeveAtualiza({});
+          setHabitosConcluidos(habitosConcluidos + 1);
+        })
         .catch((erro) => console.log(erro.response.data.message));
     } else {
-      console.log("Desmarcou");
       axios
         .post(
           `${URL_BASE}/habits/${habitoDeHoje.id}/uncheck`,
@@ -41,6 +42,7 @@ export default function HabitoDoDia(props) {
         )
         .then((res) => {
           setDeveAtualiza({});
+          setHabitosConcluidos(habitosConcluidos - 1);
         })
         .catch((erro) => console.log(erro.response.data.message));
     }

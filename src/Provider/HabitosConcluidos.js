@@ -3,11 +3,11 @@ import { createContext, useState } from "react";
 export const habitoComcluidoContext = createContext(undefined);
 
 export default function HabitoComcluidoProvider({ children }) {
-  const [habitosConcluidos, setHabitosConcluidos] = useState(0);
+  const [habitosP100Concluidos, setHabitosP100Concluidos] = useState(0);
 
   return (
     <habitoComcluidoContext.Provider
-      value={{ habitosConcluidos, setHabitosConcluidos }}
+      value={{ habitosP100Concluidos, setHabitosP100Concluidos }}
     >
       {children}
     </habitoComcluidoContext.Provider>

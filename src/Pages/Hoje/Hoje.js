@@ -7,6 +7,7 @@ import HabitoDoDia from "../../Components/HabitoDoDia/HabitoDoDia";
 import { URL_BASE } from "../../Constants/Constants";
 import { usuarioContext } from "../../Provider/UsuárioLogado";
 import { habitoComcluidoContext } from "../../Provider/HabitosConcluidos";
+import { numHabitoContext } from "../../Provider/NumHabitosComcluidos";
 
 export default function Hoje() {
   const { usuarioAtivo } = useContext(usuarioContext);
@@ -24,9 +25,12 @@ export default function Hoje() {
     "Sábado",
   ];
 
-  const { habitosConcluidos, setHabitosConcluidos } = useContext(
+  const { habitosP100Concluidos, setHabitosP100Concluidos } = useContext(
     habitoComcluidoContext
   );
+
+  const { habitosConcluidos, setHabitosConcluidos } =
+    useContext(numHabitoContext);
 
   const diaCorrente = dayjs().day();
   const dataCorrente = dayjs().date();
@@ -34,6 +38,10 @@ export default function Hoje() {
 
   const [habitosDehoje, setHabitosDehoje] = useState([]);
   const [deveAtualiza, setDeveAtualiza] = useState({});
+
+  useEffect(() => {
+    setHabitosP100Concluidos(habitosConcluidos / habitosDehoje.length);
+  }, [habitosConcluidos]);
 
   useEffect(() => {
     axios
@@ -45,11 +53,17 @@ export default function Hoje() {
   }, [deveAtualiza]);
 
   return (
-    <TelaHoje>
+    <TelaHoje temSelecionado={habitosP100Concluidos}>
       <h1 data-identifier="today-infos">
         {diasDaSemana[diaCorrente]}, {dataCorrente}/{mescorrente + 1}
       </h1>
-      <h2 data-identifier="today-infos">Nenhum hábito concluído ainda</h2>
+      <h2 data-identifier="today-infos">
+        {!habitosP100Concluidos
+          ? "Nenhum hábito concluído ainda"
+          : `${Math.floor(
+              habitosP100Concluidos * 100
+            )}% dos hábitos concluídos`}
+      </h2>
 
       {habitosDehoje.map((h) => (
         <HabitoDoDia
@@ -72,6 +86,6 @@ const TelaHoje = styled.div`
   h2 {
     margin: 8px 0 28px 0;
     font-size: 18px;
-    color: #bababa;
+    color: ${({ temSelecionado }) => (temSelecionado ? "#8FC549" : "#bababa")};
   }
 `;

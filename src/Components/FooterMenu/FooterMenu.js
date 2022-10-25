@@ -9,9 +9,7 @@ import { habitoComcluidoContext } from "../../Provider/HabitosConcluidos";
 export default function FooterMenu() {
   const navigate = useNavigate();
   const location = useLocation();
-  const {habitosConcluidos} = useContext(habitoComcluidoContext)
-
-  const percentage = 90;
+  const {habitosP100Concluidos} = useContext(habitoComcluidoContext)
 
   return (
     <Menu
@@ -25,7 +23,7 @@ export default function FooterMenu() {
 
       <div onClick={() => navigate("/hoje")}>
         <CircularProgressbar
-          value={percentage}
+          value={habitosP100Concluidos * 100}
           text={`Hoje`}
           background
           backgroundPadding={6}
