@@ -40,10 +40,6 @@ export default function Hoje() {
   const [deveAtualiza, setDeveAtualiza] = useState({});
 
   useEffect(() => {
-    setHabitosP100Concluidos(habitosConcluidos / habitosDehoje.length);
-  }, [habitosConcluidos]);
-
-  useEffect(() => {
     axios
       .get(`${URL_BASE}/habits/today`, config)
 
@@ -51,6 +47,20 @@ export default function Hoje() {
 
       .catch((erro) => console.log(erro.response.data));
   }, [deveAtualiza]);
+
+  useEffect(() => {
+    let contador = 0;
+
+    habitosDehoje.forEach((h) => {
+      if (h.done) contador++;
+    });
+
+    setHabitosConcluidos(contador);
+  }, [habitosDehoje]);
+
+  useEffect(() => {
+    setHabitosP100Concluidos(habitosConcluidos / habitosDehoje.length);
+  }, [habitosConcluidos]);
 
   return (
     <TelaHoje temSelecionado={habitosP100Concluidos}>

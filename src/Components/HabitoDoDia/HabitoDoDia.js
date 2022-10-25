@@ -10,18 +10,9 @@ export default function HabitoDoDia(props) {
   const { habitosConcluidos, setHabitosConcluidos } =
     useContext(numHabitoContext);
 
-  const [estaMarcado, setEstaMarcado] = useState(habitoDeHoje.done);
+  function AtualizarStatusHabito() {
 
-  useEffect(() => {
-    if (estaMarcado) {
-      setHabitosConcluidos(habitosConcluidos + 1);
-    }
-  }, []);
-
-  function AtualizarstatusHabito() {
-    setEstaMarcado(!estaMarcado);
-
-    if (!estaMarcado) {
+    if (!habitoDeHoje.done) {
       axios
         .post(
           `${URL_BASE}/habits/${habitoDeHoje.id}/check`,
@@ -49,19 +40,19 @@ export default function HabitoDoDia(props) {
   }
 
   return (
-    <Habito estaMarcado={estaMarcado}>
+    <Habito estaMarcado={habitoDeHoje.done}>
       <div data-identifier="today-infos">
         <h3>{habitoDeHoje.name}</h3>
         <p>
           Sequência atual:{" "}
-          <SequeciaAtual estaMarcado={estaMarcado}>
+          <SequeciaAtual estaMarcado={habitoDeHoje.done}>
             {habitoDeHoje.currentSequence} dias
           </SequeciaAtual>
         </p>
         <p>
           Seu recorde:{" "}
           <RecordAtual
-            estaMarcado={estaMarcado}
+            estaMarcado={habitoDeHoje.done}
             sequenciaAtual={habitoDeHoje.currentSequence}
             recordAtual={habitoDeHoje.highestSequence}
           >
@@ -69,7 +60,7 @@ export default function HabitoDoDia(props) {
           </RecordAtual>
         </p>
       </div>
-      <div onClick={AtualizarstatusHabito} data-identifier="done-habit-btn">
+      <div onClick={AtualizarStatusHabito} data-identifier="done-habit-btn">
         <ion-icon name="checkbox"></ion-icon>
       </div>
     </Habito>
