@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Trackit
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+O Trackit é um app para pessoas que desejam manter a regularidade nos seus hábitos e também criar novos hábitos no seu dia. 
 
-## Available Scripts
+O Trackit tem uma interface bem minimalista, permitindo com que o usuário não fique perdido com muitas ferramentas e recursos, mas sim foque no principal praticar/construir o hábito. 
 
-In the project directory, you can run:
+Esse app permite o usuário criar uma conta para poder salvar todos os hábitos que deseja desenvolver. Na tela inicial "Hoje" o usuário poderá ver todos os hábitos que devem ser praticados no dia, podendo dar um check quando concluir a tarefa programada, a cada check a aplicação irá interagir montrando a porcentagem de tarefas concluídas no dia e também progração dos hábitos. Na página "Hábitos" o usuário poderá visualizar todos os hábitos criados por ela, podendo criar novos hábitos ou excluir hábitos já criados. Ainda na página "Hábitos", ao criar um hábito, o usuário poderá selecionar os dias em que será realizado a tarefa desse hábito e também escolher um nome para ele.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Confira um pequeno exemplo da usabilidade e visual da aplicação:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<p align="start">
+  <img width="200" src="src/assets/" alt="Trackit-gif">
+</p>
 
-### `npm test`
+* Você pode acessar essa aplicação nesse link: 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Informações técnicas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Esse é um projeto front-end desenvolvido com [React.js](https://pt-br.react.dev/), juntamente com bibliotecas como:
+- react-router-dom;
+- styled-components;
+- axios;
+- react-loader-spinner.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Como iniciar o projeto na minha máquina?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* O primeiro passa é você fazer o download do projeto para sua máquina ou então clonar esse repositório através do seu terminal:
+  ```
+  git clone https://github.com/Nicoladla/MyWallet_Front-end.git
+  ```
+  
+* Com o projeto na sua máquina, abra o seu editor de código favorito e então, dentro do seu projeto no seu terminal, execute o comando:
+  ```
+  npm install
+  ```
 
-### `npm run eject`
+* Após isso, basta inicializar sua aplicação:
+  ```
+  npm start
+  ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Por fim, ao executar esse comando, uma janela no seu navegador se abrirá com a aplicação, mas caso isso não ocorra, você poderá acessá-lá colocando esse link no seu navegador:
+  ```
+  localhost:3000/
+  ```
