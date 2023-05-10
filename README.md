@@ -4,7 +4,10 @@ O Trackit é um app para pessoas que desejam manter a regularidade nos seus háb
 
 O Trackit tem uma interface bem minimalista, permitindo com que o usuário não fique perdido com muitas ferramentas e recursos, mas sim foque no principal praticar/construir o hábito. 
 
-Esse app permite o usuário criar uma conta para poder salvar todos os hábitos que deseja desenvolver. Na tela inicial "Hoje" o usuário poderá ver todos os hábitos que devem ser praticados no dia, podendo dar um check quando concluir a tarefa programada, a cada check a aplicação irá interagir mostrando a porcentagem de tarefas concluídas no dia e também progressão dos hábitos. Na página "Hábitos" o usuário poderá visualizar todos os hábitos criados por ela, podendo criar novos hábitos ou excluir hábitos já criados. Ainda na página "Hábitos", ao criar um hábito, o usuário poderá selecionar os dias em que será realizado a tarefa desse hábito e também escolher um nome para ele.
+* Esse app permite o usuário criar uma conta para poder salvar todos os hábitos que deseja desenvolver. 
+* Na tela inicial "Hoje" o usuário poderá ver todos os hábitos que devem ser praticados no dia, podendo dar um check quando concluir a tarefa programada, a cada check a aplicação irá interagir mostrando a porcentagem de tarefas concluídas no dia e também progressão dos hábitos. 
+* Na página "Hábitos" o usuário poderá visualizar todos os hábitos criados por ela, podendo criar novos hábitos ou excluir hábitos já criados. 
+* Ainda na página "Hábitos", ao criar um hábito, o usuário poderá selecionar os dias em que será realizado a tarefa desse hábito e também escolher um nome para ele.
 
 ---
 
