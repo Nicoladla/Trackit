@@ -38,7 +38,7 @@ Esse é um projeto front-end, pensado principalmente para o mobile, desenvolvido
 
 * O primeiro passa é você fazer o download do projeto para sua máquina ou então clonar esse repositório através do seu terminal:
   ```
-  git clone https://github.com/Nicoladla/MyWallet_Front-end.git
+  git clone https://github.com/Nicoladla/Trackit.git
   ```
   
 * Com o projeto na sua máquina, abra o seu editor de código favorito e então, dentro do seu projeto no seu terminal, execute o comando:
