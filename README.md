@@ -36,7 +36,7 @@ Esse é um projeto front-end, pensado principalmente para o mobile, desenvolvido
 
 ### Como iniciar o projeto na minha máquina?
 
-* O primeiro passa é você fazer o download do projeto para sua máquina ou então clonar esse repositório através do seu terminal:
+* O primeiro passo é você fazer o download do projeto para sua máquina ou então clonar esse repositório através do seu terminal:
   ```
   git clone https://github.com/Nicoladla/Trackit.git
   ```
