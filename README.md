@@ -1,20 +1,23 @@
 # Trackit
 
-O Trackit é um app para pessoas que desejam manter a regularidade nos seus hábitos e também criar novos hábitos no seu dia. 
+O Trackit é um app para pessoas que desejam manter a regularidade nos seus hábitos e também criar novos hábitos no seu dia a dia. 
 
 O Trackit tem uma interface bem minimalista, permitindo com que o usuário não fique perdido com muitas ferramentas e recursos, mas sim foque no principal praticar/construir o hábito. 
 
-* Esse app permite o usuário criar uma conta para poder salvar todos os hábitos que deseja desenvolver. 
+* Esse app permite ao usuário criar uma conta para poder salvar todos os hábitos que deseja desenvolver;
 
-* Na tela inicial "Hoje" o usuário poderá ver todos os hábitos que devem ser praticados no dia, podendo dar um check quando concluir a tarefa programada, a cada check a aplicação irá interagir mostrando a porcentagem de tarefas concluídas no dia e também progressão dos hábitos. 
+* Na tela inicial "Hoje" o usuário poderá ver todos os hábitos que devem ser praticados no dia, podendo dar um check quando concluir a tarefa programada;
 
-* Na página "Hábitos" o usuário poderá visualizar todos os hábitos criados por ela, podendo criar novos hábitos ou excluir hábitos já criados. 
+* A cada check a aplicação irá interagir mostrando a porcentagem de tarefas concluídas no dia e também progressão dos hábitos.
+
+* Na página "Hábitos" o usuário poderá visualizar todos os hábitos criados por ele, podendo criar novos hábitos ou excluir hábitos já criados. 
 
 * Ainda na página "Hábitos", ao criar um hábito, o usuário poderá selecionar os dias em que será realizado a tarefa desse hábito e também escolher um nome para ele.
 
+
 ---
 
-## Confira um pequeno exemplo da usabilidade e visual da aplicação:
+## Confira o design e usabilidade da aplicação:
 
 <p align="start">
   <img width="200" src="src/Images/Trackit-Animação.gif" alt="Trackit-gif">
@@ -27,16 +30,19 @@ O Trackit tem uma interface bem minimalista, permitindo com que o usuário não 
 ## Informações técnicas
 
 Esse é um projeto front-end, pensado principalmente para o mobile, desenvolvido com [React.js](https://pt-br.react.dev/), juntamente com bibliotecas como:
-- react-router-dom;
-- styled-components;
-- axios;
-- react-loader-spinner;
-- dayjs;
-- react-circular-progressbar.
+
+- React router dom;
+- Styled Components;
+- Axios;
+- React loader spinner;
+- Day.js;
+- React circular progressbar.
 
 ### Como iniciar o projeto na minha máquina?
 
-* O primeiro passo é você fazer o download do projeto para sua máquina ou então clonar esse repositório através do seu terminal:
+- O primeiro passo é você fazer o download do projeto para sua máquina: [Download ZIP](https://github.com/Nicoladla/Trackit/archive/refs/heads/main.zip)
+
+- Ou então clonar esse repositório através do seu terminal:
   ```
   git clone https://github.com/Nicoladla/Trackit.git
   ```
